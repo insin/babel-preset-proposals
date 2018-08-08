@@ -9,6 +9,8 @@ node_js:
 before_install:
   - npm install coveralls
 
+install: npm install
+
 script: "npm run test:coverage"
 
 after_success:
