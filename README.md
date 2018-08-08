@@ -1,6 +1,8 @@
 # babel-preset-proposals
 
+[![Travis][travis-badge]][travis]
 [![npm package][npm-badge]][npm]
+[![Coveralls][coveralls-badge]][coveralls]
 
 A Babel 7 preset to manage experimental proposal plugin dependencies and usage, providing default configuration for plugins which have mandatory options, and ensuring that proposal plugins which affect one another are used in the correct order and have appropriate options set.
 
@@ -94,5 +96,11 @@ Proposal plugins will never be stable, so this package will always be at a 0.X v
 
 ## MIT Licensed
 
+[travis-badge]: https://img.shields.io/travis/insin/babel-preset-proposals/master.png?style=flat-square
+[travis]: https://travis-ci.org/insin/babel-preset-proposals
+
 [npm-badge]: https://img.shields.io/npm/v/babel-preset-proposals.png?style=flat-square
 [npm]: https://www.npmjs.org/package/babel-preset-proposals
+
+[coveralls-badge]: https://img.shields.io/coveralls/insin/babel-preset-proposals/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/insin/babel-preset-proposals
