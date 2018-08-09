@@ -8,7 +8,9 @@ A Babel 7 preset to manage experimental proposal plugin dependencies and usage, 
 
 ## Install
 
-`npm install babel-preset-proposals`
+```sh
+npm install babel-preset-proposals
+```
 
 ## Options
 
