@@ -109,6 +109,7 @@ function validateProposalOptions(proposal, options) {
   let type = getType(options)
   if (type === 'object') {
     let expectedOptions = []
+    /* istanbul ignore else */
     if (proposal === 'optionalChaining' || proposal === 'nullishCoalescingOperator' || proposal === 'classProperties') {
       if (options.hasOwnProperty('loose') && getType(options.loose) !== 'boolean') {
         return `'${proposal}.loose' option must be a boolean.`
