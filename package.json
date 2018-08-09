@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-proposals",
-  "version": "0.1.0-rc.0",
+  "version": "0.1.0-rc.1",
   "description": "A Babel preset to manage use of propsal plugins",
   "engines": {
     "node": ">=6.9.0"
