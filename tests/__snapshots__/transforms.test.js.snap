@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`transforms class properties, decorators and export extensions 1`] = `
-"var _class;
+"var _class, _temp;
 
 import _thing from './module2';
 export { _thing as thing };
 import * as _ns from './module1';
 export { _ns as ns };
 
-let TestClass = Test(_class = class TestClass {
+let TestClass = Test(_class = (_temp = class TestClass {
   constructor() {
     this.testProperty = true;
   }
 
-}) || _class;"
+}, _temp)) || _class;"
 `;

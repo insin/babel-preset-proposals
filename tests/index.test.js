@@ -30,11 +30,7 @@ describe('babel-preset-proposals', () => {
       unknown: true,
       loose: false,
       decorators: true,
-      functionBind: /invalid/,
-      optionalChaining: {
-        unknown1: true,
-        unknown2: true,
-      }
+      functionBind: /invalid/
     })).toThrowErrorMatchingSnapshot()
   })
 
@@ -51,9 +47,7 @@ describe('babel-preset-proposals', () => {
         functionBind: false,
         exportDefaultFrom: false,
         logicalAssignmentOperators: false,
-        optionalChaining: false,
         pipelineOperator: false,
-        nullishCoalescingOperator: false,
         doExpressions: false,
         decorators: false,
         functionSent: false,
@@ -63,7 +57,6 @@ describe('babel-preset-proposals', () => {
         dynamicImport: false,
         importMeta: false,
         classProperties: false,
-        jsonStrings: false,
       })).toMatchSnapshot()
     })
   })
@@ -86,17 +79,12 @@ describe('babel-preset-proposals', () => {
         loose: true,
         // Should configure loose for enabled plugins
         classProperties: true,
-        // Should fill in missing option
-        nullishCoalescingOperator: {},
-        optionalChaining: true,
       })).toMatchSnapshot()
     })
     test('ignores disabled or alrady-configured plugins', () => {
       expect(preset(api, {
         loose: true,
         classProperties: true,
-        nullishCoalescingOperator: false,
-        optionalChaining: {loose: false},
       })).toMatchSnapshot()
     })
     test('can create invalid config which will be caught by validation', () => {
@@ -135,58 +123,12 @@ describe('babel-preset-proposals', () => {
     })
   })
 
-  describe("'optionalChaining' option", () => {
-    test('must be boolean or an Object', () => {
-      expect(() => preset(api, {optionalChaining: /invalid/})).toThrowErrorMatchingSnapshot()
-    })
-    test('rejects unsupported options', () => {
-      expect(() => preset(api, {optionalChaining: {unknown: true}})).toThrowErrorMatchingSnapshot()
-      expect(() => preset(api, {optionalChaining: {unknown1: true, unknown2: true}})).toThrowErrorMatchingSnapshot()
-    })
-    test('enables its plugin when true', () => {
-      expect(preset(api, {optionalChaining: true})).toMatchSnapshot()
-    })
-    test('can be enabled by an empty config object', () => {
-      expect(preset(api, {optionalChaining: {}})).toMatchSnapshot()
-    })
-    test('can have its loose option configured', () => {
-      expect(preset(api, {optionalChaining: {loose: true}})).toMatchSnapshot()
-      expect(preset(api, {optionalChaining: {loose: false}})).toMatchSnapshot()
-    })
-    test('loose option must be boolean', () => {
-      expect(() => preset(api, {optionalChaining: {loose: /invalid/}})).toThrowErrorMatchingSnapshot()
-    })
-  })
-
   describe("'pipelineOperator' option", () => {
     test('must be boolean', () => {
       expect(() => preset(api, {pipelineOperator: /invalid/})).toThrowErrorMatchingSnapshot()
     })
     test('enables its plugin when true', () => {
       expect(preset(api, {pipelineOperator: true})).toMatchSnapshot()
-    })
-  })
-
-  describe("'nullishCoalescingOperator' option", () => {
-    test('must be boolean or an Object', () => {
-      expect(() => preset(api, {nullishCoalescingOperator: /invalid/})).toThrowErrorMatchingSnapshot()
-    })
-    test('enables its plugin when true', () => {
-      expect(preset(api, {nullishCoalescingOperator: true})).toMatchSnapshot()
-    })
-    test('rejects unsupported options', () => {
-      expect(() => preset(api, {nullishCoalescingOperator: {unknown: true}})).toThrowErrorMatchingSnapshot()
-      expect(() => preset(api, {nullishCoalescingOperator: {unknown1: true, unknown2: true}})).toThrowErrorMatchingSnapshot()
-    })
-    test('can be enabled by an empty config object', () => {
-      expect(preset(api, {nullishCoalescingOperator: {}})).toMatchSnapshot()
-    })
-    test('can have its loose option configured', () => {
-      expect(preset(api, {nullishCoalescingOperator: {loose: true}})).toMatchSnapshot()
-      expect(preset(api, {nullishCoalescingOperator: {loose: false}})).toMatchSnapshot()
-    })
-    test('loose option must be boolean', () => {
-      expect(() => preset(api, {nullishCoalescingOperator: {loose: /invalid/}})).toThrowErrorMatchingSnapshot()
     })
   })
 
@@ -286,15 +228,6 @@ describe('babel-preset-proposals', () => {
     test('must be loose when legacy decorators are also enabled', () => {
       expect(() => preset(api, {classProperties: {loose: false}, decorators: true})).toThrowErrorMatchingSnapshot()
       expect(() => preset(api, {classProperties: {}, decorators: true})).toThrowErrorMatchingSnapshot()
-    })
-  })
-
-  describe("'jsonStrings' option", () => {
-    test('must be boolean', () => {
-      expect(() => preset(api, {jsonStrings: /invalid/})).toThrowErrorMatchingSnapshot()
-    })
-    test('enables its plugin when true', () => {
-      expect(preset(api, {jsonStrings: true})).toMatchSnapshot()
     })
   })
 })

@@ -57,7 +57,7 @@ If the plugin takes options, you can pass an options Object for it.
 {
   "presets": [
     ["babel-preset-proposals", {
-      "nullishCoalescingOperator": {"loose": true}
+      "classProperties": {"loose": true}
     }]
   ]
 }
@@ -67,22 +67,19 @@ If the plugin takes options, you can pass an options Object for it.
 
 | Option | Babel Plugin Docs |
 | -------| ----------------- |
-| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-bind)
+| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-bind) }
 | `exportDefaultFrom` | [`@babel/plugin-proposal-export-default-from`](https://babeljs.io/docs/en/next/babel-plugin-proposal-export-default-from) |
 | `logicalAssignmentOperators` | [`@babel/plugin-proposal-logical-assignment-operators`](https://babeljs.io/docs/en/next/babel-plugin-proposal-logical-assignment-operators)
-| `optionalChaining` | [`@babel/plugin-proposal-optional-chaining`](https://babeljs.io/docs/en/next/babel-plugin-proposal-optional-chaining) |
 | `pipelineOperator` | [`@babel/plugin-proposal-pipeline-operator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-pipeline-operator) |
-| `nullishCoalescingOperator` | [`@babel/plugin-proposal-nullish-coalescing-operator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-nullish-coalescing-operator)
-| `doExpressions` | [`@babel/plugin-proposal-do-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-do-expressions)
+| `doExpressions` | [`@babel/plugin-proposal-do-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-do-expressions) |
 | `decorators` | [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/next/babel-plugin-proposal-decorators) |
-| `functionSent` | [`@babel/plugin-proposal-function-sent`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-sent)
+| `functionSent` | [`@babel/plugin-proposal-function-sent`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-sent) |
 | `exportNamespaceFrom` | [`@babel/plugin-proposal-export-namespace-from`](https://babeljs.io/docs/en/next/babel-plugin-proposal-export-namespace-from) |
-| `numericSeparator` | [`@babel/plugin-proposal-numeric-separator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-numeric-separator)
-| `throwExpressions` | [`@babel/plugin-proposal-throw-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-throw-expressions)
+| `numericSeparator` | [`@babel/plugin-proposal-numeric-separator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-numeric-separator) |
+| `throwExpressions` | [`@babel/plugin-proposal-throw-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-throw-expressions) |
 | `dynamicImport` | [`@babel/plugin-syntax-dynamic-import`](https://babeljs.io/docs/en/next/babel-plugin-syntax-dynamic-import) |
-| `importMeta` | [`@babel/plugin-syntax-import-meta`](https://babeljs.io/docs/en/next/babel-plugin-syntax-import-meta)
+| `importMeta` | [`@babel/plugin-syntax-import-meta`](https://babeljs.io/docs/en/next/babel-plugin-syntax-import-meta) |
 | `classProperties` | [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties) |
-| `jsonStrings` | [`@babel/plugin-proposal-json-strings`](https://babeljs.io/docs/en/next/babel-plugin-proposal-json-strings)
 
 ## API
 

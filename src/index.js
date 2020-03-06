@@ -3,37 +3,31 @@ const PROPOSAL_PLUGINS = {
   functionBind: '@babel/plugin-proposal-function-bind',
   // Stage 1
   exportDefaultFrom: '@babel/plugin-proposal-export-default-from',
-  logicalAssignmentOperators: '@babel/plugin-proposal-logical-assignment-operators',
-  optionalChaining: '@babel/plugin-proposal-optional-chaining',
   pipelineOperator: '@babel/plugin-proposal-pipeline-operator',
-  nullishCoalescingOperator: '@babel/plugin-proposal-nullish-coalescing-operator',
   doExpressions: '@babel/plugin-proposal-do-expressions',
   // Stage 2
   decorators: '@babel/plugin-proposal-decorators',
   functionSent: '@babel/plugin-proposal-function-sent',
-  exportNamespaceFrom: '@babel/plugin-proposal-export-namespace-from',
-  numericSeparator: '@babel/plugin-proposal-numeric-separator',
+  logicalAssignmentOperators: '@babel/plugin-proposal-logical-assignment-operators',
   throwExpressions: '@babel/plugin-proposal-throw-expressions',
   // Stage 3
   dynamicImport: '@babel/plugin-syntax-dynamic-import',
   importMeta: '@babel/plugin-syntax-import-meta',
   classProperties: '@babel/plugin-proposal-class-properties',
-  jsonStrings: '@babel/plugin-proposal-json-strings',
+  numericSeparator: '@babel/plugin-proposal-numeric-separator',
+  // Stage 4
+  exportNamespaceFrom: '@babel/plugin-proposal-export-namespace-from',
 }
 
 // Currently, all proposal plugins which take options other than 'loose' have
 // mandatory values for their options, so we don't allow them to be manually
 // configured yet.
 const PROPOSALS_WITH_OPTIONS = new Set([
-  'optionalChaining',
-  'nullishCoalescingOperator',
   'classProperties'
 ])
 
 // Plugins which take a 'loose' option
 const PROPOSALS_WITH_LOOSE_OPTION = new Set([
-  'optionalChaining',
-  'nullishCoalescingOperator',
   'classProperties'
 ])
 
@@ -110,7 +104,7 @@ function validateProposalOptions(proposal, options) {
   if (type === 'object') {
     let expectedOptions = []
     /* istanbul ignore else */
-    if (proposal === 'optionalChaining' || proposal === 'nullishCoalescingOperator' || proposal === 'classProperties') {
+    if (proposal === 'classProperties') {
       if (options.hasOwnProperty('loose') && getType(options.loose) !== 'boolean') {
         return `'${proposal}.loose' option must be a boolean.`
       }
