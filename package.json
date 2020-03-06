@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-proposals",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Babel preset to manage use of proposal plugins",
   "engines": {
     "node": ">=8"

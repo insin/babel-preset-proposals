@@ -34,9 +34,9 @@ Sets the `loose` option for all plugins which are enabled and have a `loose` opt
 
 ### Plugin Options
 
-`boolean` or `Object`, defaulting to `false`.
+`boolean` or an `Object`, defaults to `false`.
 
-To enable a plugin, pass its option as `true`. If the plugin has mandatory configuration, this preset will supply it by default.
+To enable a plugin, pass its option as `true`:
 
 ```json
 {
@@ -63,9 +63,9 @@ If the plugin takes options, you can pass an options Object for it.
 }
 ```
 
-| Option | Babel Plugin Docs |
-| -------| ----------------- |
-| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-bind) }
+| Preset option | Babel Plugin Docs |
+| ------------- | ----------------- |
+| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-bind) |
 | `exportDefaultFrom` | [`@babel/plugin-proposal-export-default-from`](https://babeljs.io/docs/en/next/babel-plugin-proposal-export-default-from) |
 | `logicalAssignmentOperators` | [`@babel/plugin-proposal-logical-assignment-operators`](https://babeljs.io/docs/en/next/babel-plugin-proposal-logical-assignment-operators)
 | `pipelineOperator` | [`@babel/plugin-proposal-pipeline-operator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-pipeline-operator) |
