@@ -15,7 +15,7 @@ Object {
     Array [
       "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-decorators/lib/index.js",
       Object {
-        "legacy": true,
+        "decoratorsBeforeExport": false,
       },
     ],
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-function-sent/lib/index.js",
@@ -23,12 +23,7 @@ Object {
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-throw-expressions/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-syntax-dynamic-import/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-syntax-import-meta/lib/index.js",
-    Array [
-      "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-class-properties/lib/index.js",
-      Object {
-        "loose": true,
-      },
-    ],
+    "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-class-properties/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-export-namespace-from/lib/index.js",
   ],
@@ -58,7 +53,7 @@ Object {
     Array [
       "@babel/plugin-proposal-decorators",
       Object {
-        "legacy": true,
+        "decoratorsBeforeExport": false,
       },
     ],
     "@babel/plugin-proposal-function-sent",
@@ -66,12 +61,7 @@ Object {
     "@babel/plugin-proposal-throw-expressions",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
-    Array [
-      "@babel/plugin-proposal-class-properties",
-      Object {
-        "loose": true,
-      },
-    ],
+    "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-numeric-separator",
     "@babel/plugin-proposal-export-namespace-from",
   ],
@@ -79,6 +69,25 @@ Object {
 `;
 
 exports[`babel-preset-proposals 'all' option must be boolean 1`] = `"babel-preset-proposals: 'all' option must be boolean."`;
+
+exports[`babel-preset-proposals 'classProperties' option adds loose option when enabled and legacy decorators are also enabled 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+}
+`;
 
 exports[`babel-preset-proposals 'classProperties' option can be enabled by an empty config object 1`] = `
 Object {
@@ -133,11 +142,7 @@ exports[`babel-preset-proposals 'classProperties' option must be loose when lega
 
 exports[`babel-preset-proposals 'classProperties' option must be loose when legacy decorators are also enabled 2`] = `"babel-preset-proposals: 'classProperties.loose' option must be true, as legacy decorators are being used."`;
 
-exports[`babel-preset-proposals 'classProperties' option rejects unsupported options 1`] = `"babel-preset-proposals: 'classProperties' option contained an unknown option: 'unknown'"`;
-
-exports[`babel-preset-proposals 'classProperties' option rejects unsupported options 2`] = `"babel-preset-proposals: 'classProperties' option contained unknown options: 'unknown1', 'unknown2'"`;
-
-exports[`babel-preset-proposals 'decorators' option enables its plugin with legacy option when true 1`] = `
+exports[`babel-preset-proposals 'decorators' option can have its options configured 1`] = `
 Object {
   "plugins": Array [
     Array [
@@ -150,7 +155,46 @@ Object {
 }
 `;
 
-exports[`babel-preset-proposals 'decorators' option must be boolean 1`] = `"babel-preset-proposals: 'decorators' option must be a boolean."`;
+exports[`babel-preset-proposals 'decorators' option can have its options configured 2`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "decoratorsBeforeExport": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'decorators' option can have its options configured 3`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "decoratorsBeforeExport": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'decorators' option enables its plugin with default options when true 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-decorators",
+      Object {
+        "decoratorsBeforeExport": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'decorators' option must be boolean or an Object 1`] = `"babel-preset-proposals: 'decorators' option must be a boolean or an Object."`;
 
 exports[`babel-preset-proposals 'doExpressions' option enables its plugin when true 1`] = `
 Object {
@@ -247,13 +291,39 @@ Object {
 }
 `;
 
-exports[`babel-preset-proposals 'loose' option ignores disabled or alrady-configured plugins 1`] = `
+exports[`babel-preset-proposals 'loose' option configures loose mode for all plugins which take it 2`] = `
 Object {
   "plugins": Array [
     Array [
       "@babel/plugin-proposal-class-properties",
       Object {
         "loose": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'loose' option ignores disabled or already-configured plugins 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'loose' option ignores disabled or already-configured plugins 2`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-class-properties",
+      Object {
+        "loose": false,
       },
     ],
   ],
@@ -272,7 +342,7 @@ Object {
 
 exports[`babel-preset-proposals 'numericSeparator' option must be boolean 1`] = `"babel-preset-proposals: 'numericSeparator' option must be a boolean."`;
 
-exports[`babel-preset-proposals 'pipelineOperator' option enables its plugin when true 1`] = `
+exports[`babel-preset-proposals 'pipelineOperator' option can have its options configured 1`] = `
 Object {
   "plugins": Array [
     Array [
@@ -285,7 +355,50 @@ Object {
 }
 `;
 
-exports[`babel-preset-proposals 'pipelineOperator' option must be boolean 1`] = `"babel-preset-proposals: 'pipelineOperator' option must be a boolean."`;
+exports[`babel-preset-proposals 'pipelineOperator' option can have its options configured 2`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-pipeline-operator",
+      Object {
+        "proposal": "smart",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'pipelineOperator' option can have its options configured 3`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-pipeline-operator",
+      Object {
+        "proposal": "fsharp",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'pipelineOperator' option enables its plugin with default config when true 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "@babel/plugin-proposal-pipeline-operator",
+      Object {
+        "proposal": "minimal",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'pipelineOperator' option has its proposal option validated 1`] = `"babel-preset-proposals: 'pipelineOperator.proposal' option must be one of: minimal, smart, fsharp."`;
+
+exports[`babel-preset-proposals 'pipelineOperator' option has its proposal option validated 2`] = `"babel-preset-proposals: 'pipelineOperator.proposal' option must be one of: minimal, smart, fsharp."`;
+
+exports[`babel-preset-proposals 'pipelineOperator' option must be boolean or an Object 1`] = `"babel-preset-proposals: 'pipelineOperator' option must be a boolean or an Object."`;
 
 exports[`babel-preset-proposals 'throwExpressions' option enables its plugin when true 1`] = `
 Object {

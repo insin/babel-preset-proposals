@@ -19,20 +19,19 @@ const PROPOSAL_PLUGINS = {
   exportNamespaceFrom: '@babel/plugin-proposal-export-namespace-from',
 }
 
-// Currently, all proposal plugins which take options other than 'loose' have
-// mandatory values for their options, so we don't allow them to be manually
-// configured yet.
 const PROPOSALS_WITH_OPTIONS = new Set([
-  'classProperties'
+  'classProperties',
+  'decorators',
+  'pipelineOperator',
 ])
 
 // Plugins which take a 'loose' option
 const PROPOSALS_WITH_LOOSE_OPTION = new Set([
-  'classProperties'
+  'classProperties',
 ])
 
-const MANDATORY_PROPOSAL_OPTIONS = {
-  decorators: {legacy: true},
+const DEFAULT_PLUGIN_OPTIONS = {
+  decorators: {decoratorsBeforeExport: false},
   pipelineOperator: {proposal: 'minimal'},
 }
 
@@ -47,11 +46,19 @@ function getPlugin(proposal, {absolutePaths}) {
   return PROPOSAL_PLUGINS[proposal]
 }
 
-function classPropertiesExplicitlyInSpecMode(classPropertyOptions) {
+function classPropertiesExplicitlyInSpecMode(proposalOptions) {
   return (
-    classPropertyOptions.hasOwnProperty('classProperties') &&
-    getType(classPropertyOptions.classProperties) === 'object' &&
-    classPropertyOptions.classProperties.loose !== true
+    proposalOptions.hasOwnProperty('classProperties') &&
+    getType(proposalOptions.classProperties) === 'object' &&
+    proposalOptions.classProperties.loose !== true
+  )
+}
+
+function decoratorsInLegacyMode(proposalOptions) {
+  return (
+    proposalOptions.hasOwnProperty('decorators') &&
+    getType(proposalOptions.decorators) === 'object' &&
+    proposalOptions.decorators.legacy === true
   )
 }
 
@@ -86,9 +93,9 @@ export function validateOptions(options) {
   })
 
   // Special case - class properties must be in loose mode if decorators are in legacy mode
-  // We handle this automatically if class properties and decorators are enabled
   if (proposalOptions.decorators &&
       proposalOptions.classProperties &&
+      decoratorsInLegacyMode(proposalOptions) &&
       classPropertiesExplicitlyInSpecMode(proposalOptions)) {
     errors.push(`'classProperties.loose' option must be true, as legacy decorators are being used.`)
   }
@@ -101,23 +108,21 @@ export function validateOptions(options) {
  */
 function validateProposalOptions(proposal, options) {
   let type = getType(options)
-  if (type === 'object') {
-    let expectedOptions = []
-    /* istanbul ignore else */
-    if (proposal === 'classProperties') {
-      if (options.hasOwnProperty('loose') && getType(options.loose) !== 'boolean') {
-        return `'${proposal}.loose' option must be a boolean.`
-      }
-      expectedOptions.push('loose')
+  if (type === 'object' && PROPOSALS_WITH_OPTIONS.has(proposal)) {
+    if (PROPOSALS_WITH_LOOSE_OPTION.has(proposal) &&
+        options.hasOwnProperty('loose') &&
+        getType(options.loose) !== 'boolean') {
+      return `'${proposal}.loose' option must be a boolean.`
     }
 
-    let unexpectedOptions = Object.keys(options).filter(option => !expectedOptions.includes(option))
-    if (unexpectedOptions.length !== 0) {
-      return (
-        `'${proposal}' option contained ` +
-        `${unexpectedOptions.length === 1 ? 'an unknown option' : 'unknown options'}: ` +
-        unexpectedOptions.map(o => `'${o}'`).join(', ')
-      )
+    // XXX @babel/plugin-proposal-pipeline-operator isn't currently validating
+    //     the presence or value of its required proposal option, so we'll do it
+    //     in the meantime.
+    if (proposal === 'pipelineOperator') {
+      let pipelineProposals = ['minimal','smart','fsharp']
+      if (!pipelineProposals.includes(options.proposal)) {
+        return `'${proposal}.proposal' option must be one of: ${pipelineProposals.join(', ')}.`
+      }
     }
   }
   else if (type !== 'boolean') {
@@ -176,8 +181,7 @@ export default function(api, options = {}) {
   let proposalOptions = getProposalOptions(options)
   let plugins = []
 
-  // Add plugins in a known order to ensure decorators comes before class
-  // properties when both are used.
+  // Add plugins in a known order to ensure decorators comes before class properties when both are used.
   // See https://babeljs.io/docs/en/next/babel-plugin-proposal-decorators#note-compatibility-with-babel-plugin-proposal-class-properties
   Object.keys(PROPOSAL_PLUGINS).forEach((proposal) => {
     // false explicitly disables a proposal plugin (for use with the 'all' option)
@@ -189,13 +193,13 @@ export default function(api, options = {}) {
     let plugin = getPlugin(proposal, {absolutePaths})
 
     if (proposalOptions[proposal] === true) {
-      // Default class properties to loose mode when using decorators
-      if (proposal === 'classProperties' && proposalOptions.decorators) {
+      // Default class properties to loose mode when using decorators in legacy mode
+      if (proposal === 'classProperties' && decoratorsInLegacyMode(proposalOptions)) {
         plugins.push([plugin, {loose: true}])
       }
       // Provide default options for plugins which require them
-      else if (MANDATORY_PROPOSAL_OPTIONS.hasOwnProperty(proposal)) {
-        plugins.push([plugin, MANDATORY_PROPOSAL_OPTIONS[proposal]])
+      else if (DEFAULT_PLUGIN_OPTIONS.hasOwnProperty(proposal)) {
+        plugins.push([plugin, DEFAULT_PLUGIN_OPTIONS[proposal]])
       }
       else {
         plugins.push(plugin)

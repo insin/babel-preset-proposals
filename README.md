@@ -57,13 +57,11 @@ If the plugin takes options, you can pass an options Object for it.
 {
   "presets": [
     ["babel-preset-proposals", {
-      "classProperties": {"loose": true}
+      "decorators": {"legacy": true}
     }]
   ]
 }
 ```
-
-> Note: currently the only meaningful option you can set on proposal plugins is `loose` - others, such as `decorators.legacy` and `pipelineOperator.proposal` only accept a single, mandatory value, so this preset defaults them for you.
 
 | Option | Babel Plugin Docs |
 | -------| ----------------- |
@@ -80,6 +78,13 @@ If the plugin takes options, you can pass an options Object for it.
 | `dynamicImport` | [`@babel/plugin-syntax-dynamic-import`](https://babeljs.io/docs/en/next/babel-plugin-syntax-dynamic-import) |
 | `importMeta` | [`@babel/plugin-syntax-import-meta`](https://babeljs.io/docs/en/next/babel-plugin-syntax-import-meta) |
 | `classProperties` | [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties) |
+
+If a plugin _requires_ configuration and you enable it with a `true` option, this preset will provide default options:
+
+| Preset option | Default plugin options |
+| ------------- | ---------------------- |
+| `decorators` | `{decoratorsBeforeExport: false}` ([as per this decision in the proposal repo](https://github.com/tc39/proposal-decorators/issues/69#issuecomment-455538637)) |
+| `pipelineOperator` | `{proposal: 'minimal'}` |
 
 ## API
 

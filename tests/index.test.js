@@ -29,7 +29,7 @@ describe('babel-preset-proposals', () => {
       all: true,
       unknown: true,
       loose: false,
-      decorators: true,
+      decorators: {legacy: true},
       functionBind: /invalid/
     })).toThrowErrorMatchingSnapshot()
   })
@@ -80,17 +80,26 @@ describe('babel-preset-proposals', () => {
         // Should configure loose for enabled plugins
         classProperties: true,
       })).toMatchSnapshot()
+      expect(preset(api, {
+        loose: true,
+        // Should fill in missing option
+        classProperties: {},
+      })).toMatchSnapshot()
     })
-    test('ignores disabled or alrady-configured plugins', () => {
+    test('ignores disabled or already-configured plugins', () => {
       expect(preset(api, {
         loose: true,
         classProperties: true,
+      })).toMatchSnapshot()
+      expect(preset(api, {
+        loose: true,
+        classProperties: {loose: false},
       })).toMatchSnapshot()
     })
     test('can create invalid config which will be caught by validation', () => {
       expect(() => preset(api, {
         loose: false,
-        decorators: true,
+        decorators: {legacy: true},
         classProperties: true,
       })).toThrowErrorMatchingSnapshot()
     })
@@ -124,11 +133,20 @@ describe('babel-preset-proposals', () => {
   })
 
   describe("'pipelineOperator' option", () => {
-    test('must be boolean', () => {
+    test('must be boolean or an Object', () => {
       expect(() => preset(api, {pipelineOperator: /invalid/})).toThrowErrorMatchingSnapshot()
     })
-    test('enables its plugin when true', () => {
+    test('enables its plugin with default config when true', () => {
       expect(preset(api, {pipelineOperator: true})).toMatchSnapshot()
+    })
+    test('can have its options configured', () => {
+      expect(preset(api, {pipelineOperator: {proposal: 'minimal'}})).toMatchSnapshot()
+      expect(preset(api, {pipelineOperator: {proposal: 'smart'}})).toMatchSnapshot()
+      expect(preset(api, {pipelineOperator: {proposal: 'fsharp'}})).toMatchSnapshot()
+    })
+    test('has its proposal option validated', () => {
+      expect(() => preset(api, {pipelineOperator: {}})).toThrowErrorMatchingSnapshot()
+      expect(() => preset(api, {pipelineOperator: {proposal: 'invalid'}})).toThrowErrorMatchingSnapshot()
     })
   })
 
@@ -142,11 +160,16 @@ describe('babel-preset-proposals', () => {
   })
 
   describe("'decorators' option", () => {
-    test('must be boolean', () => {
+    test('must be boolean or an Object', () => {
       expect(() => preset(api, {decorators: /invalid/})).toThrowErrorMatchingSnapshot()
     })
-    test('enables its plugin with legacy option when true', () => {
+    test('enables its plugin with default options when true', () => {
       expect(preset(api, {decorators: true})).toMatchSnapshot()
+    })
+    test('can have its options configured', () => {
+      expect(preset(api, {decorators: {legacy: true}})).toMatchSnapshot()
+      expect(preset(api, {decorators: {decoratorsBeforeExport: false}})).toMatchSnapshot()
+      expect(preset(api, {decorators: {decoratorsBeforeExport: true}})).toMatchSnapshot()
     })
   })
 
@@ -211,9 +234,8 @@ describe('babel-preset-proposals', () => {
     test('enables its plugin when true', () => {
       expect(preset(api, {classProperties: true})).toMatchSnapshot()
     })
-    test('rejects unsupported options', () => {
-      expect(() => preset(api, {classProperties: {unknown: true}})).toThrowErrorMatchingSnapshot()
-      expect(() => preset(api, {classProperties: {unknown1: true, unknown2: true}})).toThrowErrorMatchingSnapshot()
+    test('adds loose option when enabled and legacy decorators are also enabled', () => {
+      expect(preset(api, {classProperties: true, decorators: {legacy: true}})).toMatchSnapshot()
     })
     test('can be enabled by an empty config object', () => {
       expect(preset(api, {classProperties: {}})).toMatchSnapshot()
@@ -226,8 +248,8 @@ describe('babel-preset-proposals', () => {
       expect(() => preset(api, {classProperties: {loose: /invalid/}})).toThrowErrorMatchingSnapshot()
     })
     test('must be loose when legacy decorators are also enabled', () => {
-      expect(() => preset(api, {classProperties: {loose: false}, decorators: true})).toThrowErrorMatchingSnapshot()
-      expect(() => preset(api, {classProperties: {}, decorators: true})).toThrowErrorMatchingSnapshot()
+      expect(() => preset(api, {classProperties: {loose: false}, decorators: {legacy: true}})).toThrowErrorMatchingSnapshot()
+      expect(() => preset(api, {classProperties: {}, decorators: {legacy: true}})).toThrowErrorMatchingSnapshot()
     })
   })
 })
