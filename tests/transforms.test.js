@@ -45,4 +45,25 @@ export class TestClass {
     }
     expect(transformSync(code, config).code).toMatchSnapshot()
   })
+
+  test('class static block and class properties', () => {
+    let code = `
+export class TestClass {
+  static #x = 42
+  static y
+  static {
+    this.y = this.#x * 2
+  }
+  testProperty = true
+} `
+    let config = {
+      presets: [
+        [proposalsPreset, {
+          classStaticBlock: true,
+          classProperties: true,
+        }]
+      ]
+    }
+    expect(transformSync(code, config).code).toMatchSnapshot()
+  })
 })

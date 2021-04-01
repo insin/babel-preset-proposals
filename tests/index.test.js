@@ -56,6 +56,7 @@ describe('babel-preset-proposals', () => {
         throwExpressions: false,
         dynamicImport: false,
         importMeta: false,
+        classStaticBlock: false,
         classProperties: false,
       })).toMatchSnapshot()
     })
@@ -224,6 +225,15 @@ describe('babel-preset-proposals', () => {
     })
     test('enables its plugin when true', () => {
       expect(preset(api, {importMeta: true})).toMatchSnapshot()
+    })
+  })
+
+  describe("'classStaticBlock' option", () => {
+    test('must be boolean', () => {
+      expect(() => preset(api, {classStaticBlock: /invalid/})).toThrowErrorMatchingSnapshot()
+    })
+    test('enables its plugin when true', () => {
+      expect(preset(api, {classStaticBlock: true})).toMatchSnapshot()
     })
   })
 

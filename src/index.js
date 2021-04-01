@@ -13,6 +13,7 @@ const PROPOSAL_PLUGINS = {
   // Stage 3
   dynamicImport: '@babel/plugin-syntax-dynamic-import',
   importMeta: '@babel/plugin-syntax-import-meta',
+  classStaticBlock: '@babel/plugin-proposal-class-static-block',
   classProperties: '@babel/plugin-proposal-class-properties',
   numericSeparator: '@babel/plugin-proposal-numeric-separator',
   // Stage 4
@@ -119,7 +120,7 @@ function validateProposalOptions(proposal, options) {
     //     the presence or value of its required proposal option, so we'll do it
     //     in the meantime.
     if (proposal === 'pipelineOperator') {
-      let pipelineProposals = ['minimal','smart','fsharp']
+      let pipelineProposals = ['minimal', 'smart', 'fsharp']
       if (!pipelineProposals.includes(options.proposal)) {
         return `'${proposal}.proposal' option must be one of: ${pipelineProposals.join(', ')}.`
       }

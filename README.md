@@ -65,19 +65,20 @@ If the plugin takes options, you can pass an options Object for it.
 
 | Preset option | Babel Plugin Docs |
 | ------------- | ----------------- |
-| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-bind) |
-| `exportDefaultFrom` | [`@babel/plugin-proposal-export-default-from`](https://babeljs.io/docs/en/next/babel-plugin-proposal-export-default-from) |
-| `logicalAssignmentOperators` | [`@babel/plugin-proposal-logical-assignment-operators`](https://babeljs.io/docs/en/next/babel-plugin-proposal-logical-assignment-operators)
-| `pipelineOperator` | [`@babel/plugin-proposal-pipeline-operator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-pipeline-operator) |
-| `doExpressions` | [`@babel/plugin-proposal-do-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-do-expressions) |
-| `decorators` | [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/next/babel-plugin-proposal-decorators) |
-| `functionSent` | [`@babel/plugin-proposal-function-sent`](https://babeljs.io/docs/en/next/babel-plugin-proposal-function-sent) |
-| `exportNamespaceFrom` | [`@babel/plugin-proposal-export-namespace-from`](https://babeljs.io/docs/en/next/babel-plugin-proposal-export-namespace-from) |
-| `numericSeparator` | [`@babel/plugin-proposal-numeric-separator`](https://babeljs.io/docs/en/next/babel-plugin-proposal-numeric-separator) |
-| `throwExpressions` | [`@babel/plugin-proposal-throw-expressions`](https://babeljs.io/docs/en/next/babel-plugin-proposal-throw-expressions) |
-| `dynamicImport` | [`@babel/plugin-syntax-dynamic-import`](https://babeljs.io/docs/en/next/babel-plugin-syntax-dynamic-import) |
-| `importMeta` | [`@babel/plugin-syntax-import-meta`](https://babeljs.io/docs/en/next/babel-plugin-syntax-import-meta) |
-| `classProperties` | [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties) |
+| `functionBind` | [`@babel/plugin-proposal-function-bind`](https://babeljs.io/docs/en/babel-plugin-proposal-function-bind) |
+| `exportDefaultFrom` | [`@babel/plugin-proposal-export-default-from`](https://babeljs.io/docs/en/babel-plugin-proposal-export-default-from) |
+| `logicalAssignmentOperators` | [`@babel/plugin-proposal-logical-assignment-operators`](https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators)
+| `pipelineOperator` | [`@babel/plugin-proposal-pipeline-operator`](https://babeljs.io/docs/en/babel-plugin-proposal-pipeline-operator) |
+| `doExpressions` | [`@babel/plugin-proposal-do-expressions`](https://babeljs.io/docs/en/babel-plugin-proposal-do-expressions) |
+| `decorators` | [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) |
+| `functionSent` | [`@babel/plugin-proposal-function-sent`](https://babeljs.io/docs/en/babel-plugin-proposal-function-sent) |
+| `exportNamespaceFrom` | [`@babel/plugin-proposal-export-namespace-from`](https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from) |
+| `numericSeparator` | [`@babel/plugin-proposal-numeric-separator`](https://babeljs.io/docs/en/babel-plugin-proposal-numeric-separator) |
+| `throwExpressions` | [`@babel/plugin-proposal-throw-expressions`](https://babeljs.io/docs/en/babel-plugin-proposal-throw-expressions) |
+| `dynamicImport` | [`@babel/plugin-syntax-dynamic-import`](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import) |
+| `importMeta` | [`@babel/plugin-syntax-import-meta`](https://babeljs.io/docs/en/babel-plugin-syntax-import-meta) |
+| `classStaticBlock` | [`@babel/plugin-proposal-class-static-block`](https://babeljs.io/docs/en/babel-plugin-proposal-class-static-block) |
+| `classProperties` | [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) |
 
 If a plugin _requires_ configuration and you enable it with a `true` option, this preset will provide default options:
 

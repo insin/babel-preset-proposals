@@ -23,6 +23,7 @@ Object {
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-throw-expressions/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-syntax-dynamic-import/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-syntax-import-meta/lib/index.js",
+    "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-class-static-block/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-class-properties/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
     "<PROJECT_ROOT>/node_modules/@babel/plugin-proposal-export-namespace-from/lib/index.js",
@@ -61,6 +62,7 @@ Object {
     "@babel/plugin-proposal-throw-expressions",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-proposal-class-static-block",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-numeric-separator",
     "@babel/plugin-proposal-export-namespace-from",
@@ -141,6 +143,16 @@ exports[`babel-preset-proposals 'classProperties' option must be boolean or an O
 exports[`babel-preset-proposals 'classProperties' option must be loose when legacy decorators are also enabled 1`] = `"babel-preset-proposals: 'classProperties.loose' option must be true, as legacy decorators are being used."`;
 
 exports[`babel-preset-proposals 'classProperties' option must be loose when legacy decorators are also enabled 2`] = `"babel-preset-proposals: 'classProperties.loose' option must be true, as legacy decorators are being used."`;
+
+exports[`babel-preset-proposals 'classStaticBlock' option enables its plugin when true 1`] = `
+Object {
+  "plugins": Array [
+    "@babel/plugin-proposal-class-static-block",
+  ],
+}
+`;
+
+exports[`babel-preset-proposals 'classStaticBlock' option must be boolean 1`] = `"babel-preset-proposals: 'classStaticBlock' option must be a boolean."`;
 
 exports[`babel-preset-proposals 'decorators' option can have its options configured 1`] = `
 Object {
